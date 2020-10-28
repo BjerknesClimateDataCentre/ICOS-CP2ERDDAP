@@ -14,15 +14,6 @@
     myList = DataObj.getList('AS') #  returns a list of Atmospheric DataObjs
 """
 
-__author__ = ["Julien Paul"]
-__credits__ = ""
-__license__ = "GPL-3.0"
-__version__ = "0.0.0"
-__maintainer__ = "BCDC"
-__email__ = ['julien.paul@uib.no','']
-__status__ = ""
-__date__ = "2019-10-19"
-
 abc = {
     'citationString' : 'citation',
     'sha256sum' : 'toto'
@@ -338,7 +329,7 @@ def queryDataObjs(lastupdate='', endupdate='', product='', lastVersion=False, do
         limit 10
     """ % (filterDobj, filterProdcut, filterLastUpDate, filterEndUpDate, filterLastVersion)
 
-    sparql = SPARQLWrapper2("https://meta.icos-cp.eu/sparqlclient")
+    sparql = SPARQLWrapper2("https://meta.icos-cp.eu/sparql")
 
     sparql.setQuery(queryString)
 

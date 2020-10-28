@@ -14,15 +14,6 @@
     myList = station.getList('AS') #  returns a list of Atmospheric stations
 """
 
-__author__ = ["Julien Paul"]
-__credits__ = ""
-__license__ = "GPL-3.0"
-__version__ = "0.0.0"
-__maintainer__ = "BCDC"
-__email__ = ['julien.paul@uib.no','']
-__status__ = ""
-__date__ = "2019-10-19"
-
 # ----------------------------------------------
 def query():
     from SPARQLWrapper import SPARQLWrapper2
@@ -48,7 +39,7 @@ def query():
         #limit 100
     """
 
-    sparql = SPARQLWrapper2("https://meta.icos-cp.eu/sparqlclient")
+    sparql = SPARQLWrapper2("https://meta.icos-cp.eu/sparql")
 
     sparql.setQuery(queryString)
 
