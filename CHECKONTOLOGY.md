@@ -21,7 +21,7 @@ list of namespaces (and url) use on ICOS-CP and on icp2edd python package.
 `vim -d cpmeta_icp_namespace.txt cpmeta_edd_namespace.txt`
 
 If any namespace is missing on icp2edd python package:
-- add it on `_ns` dictionary in `icp2edd/icpobj/icpObj.py`.
+- add it in `_ns` dictionary in `icp2edd/icpobj/icpObj.py`.
 > Note: It may have more namespace on python package than on ICOS CP, it does not matter.
 
 ## Class
@@ -32,11 +32,13 @@ If any class (NewClass) is missing on icp2edd python package:
 - create a file (`newClass.py`) on `icp2edd/icpobj/X` where X is the namespace
 > Note: if the namespace directory does not exist, create it and add in a file `__init__.py` (filled as in other namespace).
 
-check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TSV%20or%20Turtle), from result:
+check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TSV%20or%20Turtle)   
+`describe <NewClass>`  
+from result:
 - list all SubClass of the NewClass  
     `<SubClass> rdfs:subClassOf <NewClass>` 
 
-    add them on `newClass.py` as comment to keep a track of it.
+    add them in `newClass.py` as comment to keep a track of it.
 
 - list all properties of the NewClass  
     `<property> rdfs:domain <NewClass>`
@@ -47,11 +49,11 @@ check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TS
     `<subProperty> rdfs:subPropertyOf <property>`
     
     then
-    - add it on `hasSubProp` dictionary in `icpobj/subproperties.py` 
-    - add it on `newClass.py` in `_attr` dictionary, as comment to keep track of it.
+    - add it in `hasSubProp` dictionary in `icpobj/subproperties.py`, as subproperty of <property> 
+    - add it in `newClass.py` in `_attr` dictionary, as comment to keep track of it.
 
     else
-    - add it on `newClass.py` in `_attr` dictionary.
+    - add it in `newClass.py` in `_attr` dictionary.
 
 ## Property
 `vim -d cpmeta_icp_properties.txt cpmeta_edd_properties.txt`  
@@ -59,19 +61,21 @@ check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TS
 
 > **Note:** first focus on part '0'
 
-check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TSV%20or%20Turtle), from result:  
+check on [ICOS-CP SPARQL endpoint](https://meta.icos-cp.eu/sparqlclient/?type=TSV%20or%20Turtle)  
+`describe <property>`  
+from result:  
 
 if the property is a subproperty of another  
 `<subProperty> rdfs:subPropertyOf <property>`
 
 then
-- add it on `hasSubProp` dictionary in `icpobj/subproperties.py` 
-- add it on `class.py` in `_attr` dictionary, as comment to keep track of it.  
+- add it in `hasSubProp` dictionary in `icpobj/subproperties.py` 
+- add it in `class.py` in `_attr` dictionary, as comment to keep track of it.  
     - where `class.py` is the class on which the property came from.
 
 else  
     `<property> a owl:ObjectProperty`  
     `rdfs:domain <Class>`
 
-- add it on `class.py` in `_attr` dictionary.
+- add it in `class.py` in `_attr` dictionary.
     - where `class.py` is the class on which the property came from.

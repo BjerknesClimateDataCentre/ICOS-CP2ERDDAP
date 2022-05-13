@@ -31,7 +31,15 @@ _logger = logging.getLogger(__name__)
 #   RDF triples: 'subject' + 'property/predicate' + 'object/value'
 # {'property/predicate': 'object/value'}
 # Note: 'object/value' will be the output attribute name
-_attr = {}
+_attr = {
+    "cpmeta:hasStringId": "stringid",
+    # subproperty {
+    # "cpmeta:hasOrcidId": "orcidid",  # xsd:string
+    # "cpmeta:hasStationId": "stationid",  # xsd:string
+    # "cpmeta:hasTcId": "tcid",  # xsd:string
+    # "cpmeta:hasWigosId": "wigosid",  # xsd:string
+    # }
+}
 # list of equivalent class
 _equivalentClass = []
 

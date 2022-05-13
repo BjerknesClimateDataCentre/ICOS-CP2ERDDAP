@@ -41,6 +41,12 @@ hasSubProp = {
         "cpmeta:hasMeanAnnualRadiation": "mean_annual_radiation",  # xsd:float
         "cpmeta:hasTimeZoneOffset": "time_zone_offset",  # xsd:integer
     },
+    "cpmeta:hasStringId": {
+        "cpmeta:hasOrcidId": "orcidid",  # xsd:string
+        "cpmeta:hasStationId": "stationid",  # xsd:string
+        "cpmeta:hasTcId": "tcid",  # xsd:string
+        "cpmeta:hasWigosId": "wigosid",  # xsd:string
+    },
     "cpmeta:hasTcId": {
         "cpmeta:hasAtcId": "atcid",  # xsd:string
         "cpmeta:hasEtcId": "etcid",  # xsd:string
