@@ -72,6 +72,7 @@ class SuperICPObj(object):
         param = parameters.main()
         #
         self.dict_convAttr = param["attributes"]["convert"]
+        self.sep = param["attributes"]["sep"]
 
         try:
             if self._from is None:
@@ -182,13 +183,13 @@ class SuperICPObj(object):
                                 if v.value in self.tmp.keys():
                                     for kk, vv in self.tmp[v.value].items():
                                         # separator between object and attribute
-                                        kkk = k + _sep + kk
+                                        kkk = k + self.sep + kk
                                         d[kkk] = vv
                                 else:
                                     dd = spread(v.value, exclude_=exclude_, cnt_=cnt_)
                                     for kk, vv in dd.items():
                                         # separator between object and attribute
-                                        kkk = k + _sep + kk
+                                        kkk = k + self.sep + kk
                                         d[kkk] = vv
                             else:
                                 self.repack(v.value)
