@@ -15,7 +15,7 @@ __all__ = (
 
 __author__ = """Julien Paul"""
 __email__ = "julien.paul@uib.no"
-__version__ = "__version__ = 1.0.5"
+__version__ = "__version__ = 1.0.6"
 
 # where configuration files are stored
 __pkg_cfg__ = f"{__package__}.cfg"
