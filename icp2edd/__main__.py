@@ -6,7 +6,6 @@
 # import from standard lib
 import logging
 from pathlib import Path
-from time import localtime, strftime
 
 # import from other lib
 # import from my project
@@ -65,21 +64,24 @@ def main():
         raise  # Throw exception again so calling code knows it happened
 
     # loop on each dataset downloaded
-    for csv, rep in dd.items():
+    for csv, dict in dd.items():
+
+        rep = dict["path"]
+        doi = dict["doi"]
 
         _logger.info(
             "change in csv file :\n\t\t- change Date/Time format\n\t\t- remove units for variable name"
         )
         try:
             fileout = Path.joinpath(rep, csv)
-            c4edd.modify(fileout)
+            c4edd.modify(fileout, doi)
         except Exception:
             _logger.exception("Something goes wrong when modifying csv file")
             raise  # Throw exception again so calling code knows it happened
 
         _logger.info("run ERDDAP GenerateDatasetXml tool to create dataset.xml file")
         try:
-            dirout = fileout.parents[0]
+            dirout = fileout.parents[1]
             xml = x4edd.Xml4Erddap(dirout)
         except Exception:
             _logger.exception(

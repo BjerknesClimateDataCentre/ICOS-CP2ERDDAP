@@ -48,7 +48,7 @@ def combine_dict_in_list(d1_, d2_):
     d = {}
     for key in set(list(d1_.keys()) + list(d2_.keys())):
         try:
-            if isinstance(d1_[key], list):
+            if isinstance(d1_[key], (list, set)):
                 d.setdefault(key, []).extend(d1_[key])
             else:
                 d.setdefault(key, []).append(d1_[key])
@@ -57,7 +57,7 @@ def combine_dict_in_list(d1_, d2_):
             pass
 
         try:
-            if isinstance(d2_[key], list):
+            if isinstance(d2_[key], (list, set)):
                 d.setdefault(key, []).extend(d2_[key])
             else:
                 d.setdefault(key, []).append(d2_[key])
@@ -80,11 +80,15 @@ def combine_dict_in_set(d1_, d2_):
     :param d2_: dictionary
     :return: dictionary
     """
+    if not isinstance(d1_, dict):
+        raise TypeError(f" d1_ is not a dictionnary")
+    if not isinstance(d2_, dict):
+        raise TypeError(f" d2_ is not a dictionnary")
     d = {}
     # for key in set(list(d1_.keys()) + list(d2_.keys())):
     for key in set(d1_.keys()) | set(d2_.keys()):
         try:
-            if isinstance(d1_[key], set):
+            if isinstance(d1_[key], (set, list)):
                 d.setdefault(key, set([])).update(d1_[key])
             else:
                 d.setdefault(key, set([])).add(d1_[key])
@@ -93,7 +97,7 @@ def combine_dict_in_set(d1_, d2_):
             pass
 
         try:
-            if isinstance(d2_[key], set):
+            if isinstance(d2_[key], (set, list)):
                 d.setdefault(key, set([])).update(d2_[key])
             else:
                 d.setdefault(key, set([])).add(d2_[key])

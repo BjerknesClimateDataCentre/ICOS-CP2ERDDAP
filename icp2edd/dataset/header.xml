@@ -39,7 +39,7 @@ https://coastwatch.pfel.noaa.gov/erddap/download/setupDatasetsXml.html
 <ipAddressMaxRequests></ipAddressMaxRequests>                     <!-- current default=7 -->
 <ipAddressMaxRequestsActive></ipAddressMaxRequestsActive>         <!-- current default=2 -->
 <ipAddressUnlimited></ipAddressUnlimited>                         <!-- default=(empty) -->
-<loadDatasetsMinMinutes>1</loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
+<loadDatasetsMinMinutes></loadDatasetsMinMinutes>                 <!-- usually=default=15 -->
 <loadDatasetsMaxMinutes></loadDatasetsMaxMinutes>                 <!-- default=60 -->
 <logLevel></logLevel> <!-- "warning" (fewest messages), "info" (default), or "all" (most messages) -->
 <nGridThreads></nGridThreads>                                     <!-- default=1 -->

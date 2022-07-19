@@ -62,11 +62,12 @@ def time_format(datetime_, pre_=3):
     )
 
 
-def modify(f):
+def modify(f, doi_=None):
     """
     overwrite csv file 'f' after few change:
     - remove units from variable name
     - reformat Date/Time with 3 decimals
+    - add a column with 'doi'
 
     :param f: csv file to be changed
 
@@ -92,6 +93,9 @@ def modify(f):
                 data[dt] = data[dt].apply(lambda x: time_format(x, 3))
     else:
         _logger.warning(f"Can not find 'Date/Time' column in csv file -{f}-")
+
+    # add 'doi' column
+    data["doi"] = doi_
 
     # Preview the first 5 lines of the loaded data
     # print(data.head())

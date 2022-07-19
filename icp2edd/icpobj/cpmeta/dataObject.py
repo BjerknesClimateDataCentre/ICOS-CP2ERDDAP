@@ -197,7 +197,9 @@ class DataObject(StaticObject):
                 filename = Path(re.sub("\s+", "_", binding["filename"][0].value))
                 stemname = filename.stem
 
-                dirout = setupcfg.datasetCsvPath / stemname
+                pattern = re.compile("(.*)(\d{8})(\D*)")
+                result = re.match(pattern, stemname)
+                dirout = setupcfg.datasetCsvPath / result[1] / stemname
                 try:
                     dirout.mkdir(parents=True)
                 except FileExistsError:
@@ -208,7 +210,13 @@ class DataObject(StaticObject):
                 fileout = dirout / filename
                 if filename not in d:
                     # download
-                    d[filename] = dirout
+                    _doi = None
+                    if "doi" in binding:
+                        _doi = binding["doi"][0].value
+                    else:
+                        _logger.debug(f"can not find 'doi' attribute for {filename}.")
+
+                    d[filename] = {"path": dirout, "doi": _doi}
 
                     cookies = dict(CpLicenseAcceptedFor=pid)
                     # Fill in your details here to be posted to the login form.

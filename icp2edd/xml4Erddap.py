@@ -74,7 +74,7 @@ class Xml4Erddap(object):
             raise TypeError(f"Invalid type value, eddType -{eddType}- must be string")
 
         # TODO check for csv file in sub directories
-        if len(list(dirout_.glob("*.csv"))) <= 0:
+        if len(list(dirout_.glob("**/*.csv"))) <= 0:
             raise FileNotFoundError(f"Can not find any csv file in {dirout_}")
 
         self._stem = dirout_.stem

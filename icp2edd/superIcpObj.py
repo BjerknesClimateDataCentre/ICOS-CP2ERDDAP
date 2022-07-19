@@ -17,6 +17,7 @@
 # --- import -----------------------------------
 # import from standard lib
 import logging
+import re
 import traceback
 from pathlib import Path
 from pprint import pformat
@@ -132,6 +133,7 @@ class SuperICPObj(object):
             self.repack(uri)
         print(f"")
 
+        self._groupDataset()
         return {**self.DataObject, **self.DataVariable}
 
     def _renameKeyDic(self, _):
@@ -429,6 +431,28 @@ class SuperICPObj(object):
                             except Exception:
                                 _logger.exception(f"can not found class {objtype}")
                                 raise
+
+    def _groupDataset(self):
+        """group dataset by station"""
+        # check datasetID pattern
+        pattern = re.compile("(icos.*)(\d{8})(\D*)")
+
+        list_groupid = []
+        list_keys = list(self.DataObject.keys())
+        for key in list_keys:
+            result = re.match(pattern, key)
+            if result:
+                groupid = result[1]
+                list_groupid.append(groupid)
+                self.DataObject[groupid] = util.combine_dict_in_set(
+                    self.DataObject.get(groupid, {}), self.DataObject.get(key)
+                )
+
+        # convert set to list (to avoid issue)
+        for key in list_groupid:
+            self.DataObject[key] = util.combine_dict_in_list(
+                {}, self.DataObject.get(key)
+            )
 
 
 if __name__ == "__main__":
